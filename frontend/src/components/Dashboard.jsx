@@ -1,6 +1,6 @@
 import React from 'react'
-import { Grid, GridItem, useMediaQuery, Box } from '@chakra-ui/react'
-import Controls from './Controls'
+import { Grid, GridItem, useMediaQuery, Box, Drawer } from '@chakra-ui/react'
+import ControlsDrawer from './ControlsDrawer'
 import CustomWebcam from './CustomWebcam';
 
 export default function Dashboard() {
@@ -63,7 +63,7 @@ export default function Dashboard() {
         p='2'
         area={'controls'}
       >
-        <Controls/>
+        <ControlsDrawer/>
       </GridItem>
     </Grid>
     </>
