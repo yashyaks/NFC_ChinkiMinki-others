@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, GridItem, useMediaQuery, Box } from '@chakra-ui/react'
 import Controls from './Controls'
+import CustomWebcam from './CustomWebcam';
 
 export default function Dashboard() {
   const [isSmallerThan1200] = useMediaQuery("(max-width: 1200px)");
@@ -8,6 +9,7 @@ export default function Dashboard() {
   return (
     <>
     <Grid
+        bg='black'
       templateAreas={
         isSmallerThan1200
           ? `"video"
@@ -19,7 +21,7 @@ export default function Dashboard() {
       gridTemplateRows={
         isSmallerThan1200
           ? '500px 500px 500px'
-          : '450px 450px'
+          : '300px 500px'
       }
       gridTemplateColumns={
         isSmallerThan1200
@@ -35,17 +37,18 @@ export default function Dashboard() {
         borderRadius='20'
         m='2'
         p='2'
-        bg='pink.300'
         area={'video'}
       >
-        video
+        <CustomWebcam/>
       </GridItem>
 
       <GridItem
         borderRadius='20'
+        border='2px'
         m='2'
         p='2'
-        bg='gray.300'
+        bg='red.100'
+        borderColor={'red.500'}
         area={'output'}
       >
         output
@@ -60,7 +63,7 @@ export default function Dashboard() {
         p='2'
         area={'controls'}
       >
-        <Controls />
+        <Controls/>
       </GridItem>
     </Grid>
     </>
