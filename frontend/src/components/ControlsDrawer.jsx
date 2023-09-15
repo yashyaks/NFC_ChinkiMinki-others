@@ -38,7 +38,7 @@ export default function ControlsDrawer() {
 
           <DrawerFooter>
             <Button variant='outline' mr={3} onClick={onClose}>
-              <Controls/>
+
             </Button>
             <Button colorScheme='blue'>Save</Button>
           </DrawerFooter>
