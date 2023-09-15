@@ -1,0 +1,2 @@
+# NFC_ChinkiMinki-others
+ 
