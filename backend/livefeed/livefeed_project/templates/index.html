@@ -1,0 +1,119 @@
+<!-- appname/templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Feed with Prediction</title>
+</head>
+<body>
+    <h1>Live Feed with Prediction</h1>
+    
+    <!-- Display the live feed from Django's streaming response -->
+    <img src="{% url 'live_feed' %}" alt="Live Feed" width="640" height="480">
+    
+    <!-- Display the predicted text below the live feed -->
+    <div>
+        <h2>Predicted Text:</h2>
+        <textarea id="predictedText" rows="4" cols="50" readonly>{{predicted}}</textarea>
+        <!-- <textarea id="translatedText" rows="4" cols="50" readonly>{{translated}}</textarea> -->
+    </div>
+    <div id="google_translate_element"></div>
+
+
+
+    <!-- JavaScript to update the predicted text in the text area -->
+<!-- JavaScript to update the predicted text in the text area -->
+<button id="updateButton">Update Text and Clear</button>
+
+<button id="volumeButton">Play audio</button>
+
+<!-- Add a button to generate text-to-speech audio -->
+<!-- <button id="generateAudioButton">Generate Audio</button> -->
+<!-- <button id="translate">Translate</button> -->
+
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
+    
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- JavaScript to update the predicted text in the text area -->
+<script>
+    const textArea = document.getElementById("predictedText");
+    const texttranslateArea = document.getElementById("translatedText");
+    const updateButton = document.getElementById("updateButton");
+    const volumeButton = document.getElementById("volumeButton");
+    let isVolumeOn = true; // Initial volume state
+    
+    // Establish a WebSocket connection to the Django server
+    const socket = new WebSocket("ws://127.0.0.1:8000/live_feed/");  // Replace with your Django server URL
+
+    // Handle incoming WebSocket messages
+    // socket.onmessage = function(event) {
+    //     const messageData = JSON.parse(event.data);
+    //     const predictedText = messageData.message;
+    //     textArea.value = predictedText;
+    // };
+
+    // Add an event listener to the button to update the textarea and clear previous sentences
+    updateButton.addEventListener("click", function() {
+        // Send a request to update the textarea and clear the list
+        fetch("/update_sentences/")  // Replace with the appropriate URL
+            .then(response => response.json())
+            .then(data => {
+                const sentences = data.sentences;
+                textArea.value = sentences;
+            })
+            .catch(error => {
+                console.error("Error updating text:", error);
+            });
+    });
+    
+    // Add an event listener to the button to toggle volume
+    volumeButton.addEventListener("click", function() {
+        fetch("/text_to_speech/")
+            .then(response => response.json())
+            .then(data=>{
+                const status = data.status;
+            } )  // Toggle volume state
+    });
+
+    // Create an audio element for text-to-speech
+    // const audioElement = new Audio();
+
+    // Add an event listener to the button to generate audio
+    // const generateAudioButton = document.getElementById("generateAudioButton");
+    // generateAudioButton.addEventListener("click", function() {
+    //     const text = textArea.value;
+    //     if (text.trim() !== "") {
+    //         // Generate audio for the entire sentence
+    //         ttsForSentence(text);
+    //     }
+    // });
+    const translater = document.getElementById("translate");
+
+    translater.addEventListener("click", function(){
+    fetch("/translate/")
+    .then(response => response.json())
+    .then(data => {
+                const sentences = data.translated;
+                texttranslateArea.value = sentences;
+            })
+            .catch(error => {
+                console.error("Error updating text:", error);
+            });
+    })
+    // Function to generate text-to-speech audio for the entire sentence
+    function ttsForSentence(text) {
+        tts = gTTS(text);
+        tts.save("home/output.mp3");
+        audioElement.src = "/home/output.mp3"; // Replace with the correct audio file path
+        audioElement.play(); // Play the audio
+    }
+
+</script>
+</body>
+</html>

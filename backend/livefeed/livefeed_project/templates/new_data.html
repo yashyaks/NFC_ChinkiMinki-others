@@ -1,0 +1,26 @@
+<!-- new_data.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Collection</title>
+</head>
+<body>
+    <h1>Data Collection</h1>
+    <form method="post">
+        {% csrf_token %}
+        <img src="{% url 'live_feed' %}" alt="Live Feed" width="640" height="480">
+    
+    <!-- Display the predicted text below the live feed -->
+    <div>
+        <h2>Predicted Text:</h2>
+        <textarea id="predictedText" rows="4" cols="50" readonly>{{predicted}}</textarea>
+    </div>
+        <label for="text_to_collect">Text to Collect:</label>
+        <input type="text" id="text_to_collect" name="text_to_collect" required>
+        <br>
+        <button type="submit">Start Data Collection</button>
+    </form>
+</body>
+</html>
