@@ -12,8 +12,8 @@ from gtts import gTTS
 from playsound import playsound
 import subprocess
 from django.http import JsonResponse
-from transformers import MBartForConditionalGeneration, MBart50TokenizerFast
-from transformers import TFMBartForConditionalGeneration
+# from transformers import MBartForConditionalGeneration, MBart50TokenizerFast
+# from transformers import TFMBartForConditionalGeneration
 import time
 global sequence
 sequence = []

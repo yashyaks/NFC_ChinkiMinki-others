@@ -17,6 +17,9 @@ import Cards from './Cards';
 import Features2 from './Features2';
 import Footer from './Footer';
 import Newsletter from './Newsletter';
+const handleClick = () => {
+    window.location.replace('http://127.0.0.1:8000/');
+  };
 
 export default function Hero() {  
     return (
@@ -31,18 +34,19 @@ export default function Hero() {
         bg='black'
         >
           <Stack
-            bg = {'black'}
+
             as={Box}
             textAlign={'center'}
             spacing={{ base: 8, md: 14 }}
-            py={{ base: 20, md: 36 }}>
-
+            py={{ base: 20, md: 36 }}
+            bgImage={'bgimg'}
+            >
             <Heading
               color={"white"}
               fontWeight={900}
               fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
               >
-              ChinkiMinki & Others <br />
+              SignSway <br />
               </Heading>
               <Text
                 as={'span'} 
@@ -64,8 +68,8 @@ export default function Hero() {
               align={'center'}
               alignSelf={'center'}
               position={'relative'}>
-                <Link to="/signup" >
-              <Button
+                <Link>
+              <Button onClick={handleClick}
                 bg={'red.500'}
                 rounded={'full'}
                 px={6}
@@ -76,9 +80,9 @@ export default function Hero() {
                   Get Started
               </Button>
               </Link>
-              <Link to="/login" >
+              <Link to="/Speech2text" >
               <Button bgGradient= 'linear(to-l, #3131D8, red.500)'  bgClip='text' variant={'link'}>
-                Login
+              लेख
               </Button>
               </Link>
               <Box>
