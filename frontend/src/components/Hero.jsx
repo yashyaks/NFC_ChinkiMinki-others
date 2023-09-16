@@ -8,42 +8,19 @@ import {
     Icon,
     SimpleGrid,
     createIcon,
-  } from '@chakra-ui/react';
-  import Footer from './Footer';
-  import {Link} from 'react-router-dom';
-import AnimatedPage from './Animate/Animate';
-import Features from './Features';
-import Cards from './Cards';
+} from '@chakra-ui/react';
+import {Link} from 'react-router-dom';
+import React from 'react';
 import Pricing from './Pricing';
 import Statistics from './Statistics';
-import FAQ from './FAQ'
-import Newsletter from './Newsletter';
+import Cards from './Cards';
 import Features2 from './Features2';
+import Footer from './Footer';
+import Newsletter from './Newsletter';
 
-import React from 'react'
-import {IconButton, useBreakpointValue } from '@chakra-ui/react'
-// Here we have used react-icons package for the icons
-import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
-// And react-slick as our Carousel Lib
-import Slider from 'react-slick'
-
-const settings = {
-  dots: true,
-  arrows: false,
-  fade: true,
-  infinite: true,
-  autoplay: true,
-  speed: 500,
-  autoplaySpeed: 5000,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-}
-
-export default function Hero() {
+export default function Hero() {  
     return (
       <>
-
-        <AnimatedPage>
           {/* CSS files for react-slick */}
           {/*<Box sx={outerBoxStyles}>*/}
         
@@ -52,7 +29,6 @@ export default function Hero() {
         <Container maxW={'300xl'}
         maxH={'100vh'} 
         bg='black'
-
         >
           <Stack
             bg = {'black'}
@@ -131,16 +107,13 @@ export default function Hero() {
         {/*</Box>*/}
         {/*</Box>*/}
         <Statistics/>
-        <Features/>
         <Pricing/>
         <Cards/>
         <Features2/>
-        <SimpleGrid  bg='black' pr='225' pl='225'columns={2} spacing={{ base: 5, lg: 8 }}>
-        <FAQ/>
-        <Newsletter/>
+        <SimpleGrid  bg='black' pr='225' pl='225'columns={1} spacing={{ base: 5, lg: 8 }}>
+            <Newsletter/>
         </SimpleGrid>
-        <Footer />
-        </AnimatedPage>
+        <Footer/>
       </>
     );
   }

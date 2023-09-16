@@ -11,8 +11,7 @@ import {
     useColorModeValue,
   } from '@chakra-ui/react';
 
-  import { ReactElement } from 'react';
-  import {
+import {
     FcAbout,
     FcAssistant,
     FcCollaboration,
@@ -21,7 +20,7 @@ import {
   } from 'react-icons/fc';
   
   
-  const Card = ({ heading, description, icon, href }) => {
+const Card = ({ heading, description, icon, href }) => {
     return (
       <Box
         maxW={{ base: 'full', md: '275px' }}
